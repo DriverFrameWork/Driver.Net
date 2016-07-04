@@ -8,6 +8,9 @@ namespace Driver.Net.Infrastructure.Mapper
     [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class ColumnMappingAttribute : Attribute
     {
-        public string Name { get; set; }
+        /// <summary>
+        /// 数据库列名
+        /// </summary>
+        public string DbName { get; set; }
     }
 }

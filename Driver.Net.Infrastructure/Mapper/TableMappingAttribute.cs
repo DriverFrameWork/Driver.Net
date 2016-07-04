@@ -8,5 +8,9 @@ namespace Driver.Net.Infrastructure.Mapper
 {
     public class TableMappingAttribute
     {
+        /// <summary>
+        /// 数据库表名
+        /// </summary>
+        public string TableName { get; set; }
     }
 }
