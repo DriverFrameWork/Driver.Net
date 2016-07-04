@@ -17,7 +17,7 @@ namespace Driver.Net.Infrastructure.Mapper
                            type.GetProperties().FirstOrDefault(prop =>
                                prop.GetCustomAttributes(false)
                                    .OfType<ColumnMappingAttribute>()
-                                   .Any(attr => attr.Name.ToUpper() == columnName.ToUpper())
+                                   .Any(attr => attr.DbName.ToUpper() == columnName.ToUpper())
                                )
                        ),
                     new DefaultTypeMap(typeof(T))

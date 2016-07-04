@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\DbType.cs" />
     <Compile Include="Mapper\TableMappingAttribute.cs" />
     <Compile Include="Cache\AbstractCacheContext.cs" />
     <Compile Include="Configuration\AppSettingFinder.cs" />

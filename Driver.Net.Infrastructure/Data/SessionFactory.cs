@@ -19,10 +19,10 @@ namespace Driver.Net.Infrastructure.Data
         /// 根据Provider类型，创建数据库连接
         /// </summary>
         /// <returns></returns>
-        private static IDbConnection CreateConnectionByProvider()
+        private static IDbConnection CreateConnectionByProvider(string connString)
         {
-           
-            var connectionString = AppSettingFinder.Query("db:ConnectionString");
+            var connectionString = string.IsNullOrWhiteSpace(connString) ? AppSettingFinder.Query("db:ConnectionString") : connString;
+            //var connectionString = AppSettingFinder.Query("db:ConnectionString");
             String provider = AppSettingFinder.Query("db:Provider");
             IDbConnection conn = null;
             switch (provider)
@@ -34,6 +34,10 @@ namespace Driver.Net.Infrastructure.Data
                 case "MSSQL":
                     conn = new SqlConnection(connectionString);
                     break;
+                default:
+                    conn = new SqlConnection(connectionString);
+                    break;
+                       
 
             }
             //IDbConnection conn = new OracleConnection(connectionString);
@@ -45,9 +49,9 @@ namespace Driver.Net.Infrastructure.Data
         /// 创建数据库连接
         /// </summary>
         /// <returns></returns>
-        public static IDbConnection OpenConnection()
+        public static IDbConnection OpenConnection(string connectionString = null)
         {
-            IDbConnection conn = CreateConnectionByProvider();
+            IDbConnection conn = CreateConnectionByProvider(connectionString);
 
             if (conn.State == ConnectionState.Closed)
             {
